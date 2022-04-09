@@ -22,5 +22,8 @@ while True:
         threads.append(Sender(target, x))
         x = x + 1
         
+    if (len(targets) == 0):
+        break
+
     for thread in threads:
         thread.start()
