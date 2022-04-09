@@ -1,4 +1,5 @@
 from threading import Thread
+from time import sleep
 import requests
 import json
 import random
@@ -32,6 +33,9 @@ class Sender(Thread):
                 "zip": self.random_string_generator(8192)
             }
 
-            response = requests.post(self.target, data = json.dumps(mock_data)).text
-            print("[{}] {}".format(self.id, response))
+            try:
+                response = requests.post(self.target, data = json.dumps(mock_data)).text
+                print("[{}] {}".format(self.id, response))
+            except:
+                sleep(10)
 

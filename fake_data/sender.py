@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from threading import Thread
+from time import sleep
 from os import getenv
 import requests
 import json
@@ -35,6 +36,9 @@ class Sender(Thread):
                 "zip": item["zip"]
             }
 
-            response = requests.post(target_firebase, data = json.dumps(mock_data)).text
-            print("[{}] {}".format(self.id, response))
+            try:
+                response = requests.post(target_firebase, data = json.dumps(mock_data)).text
+                print("[{}] {}".format(self.id, response))
+            except:
+                sleep(10)
 
