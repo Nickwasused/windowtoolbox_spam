@@ -3,9 +3,7 @@ from dotenv import load_dotenv
 from os import getenv
 import numpy as np
 import requests
-import time
 import json
-import time
 
 load_dotenv()
 
