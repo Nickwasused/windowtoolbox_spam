@@ -14,3 +14,7 @@ Please see ```.env```
 | THREADS | 4 | Thread count for ```/fake_data/main.py```. Please note that ```/bigdata/main.py``` has a thread for every target!
 | FAKE_DATA_URL | https://my.api.mockaroo.com/windowtoolbox | Api Url for Fake Data (https://mockaroo.com/)
 | API_KEY | 81300f30 | https://mockaroo.com/ API Key
+
+# Disclaimer
+
+This is only for educational purposes.
