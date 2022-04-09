@@ -9,12 +9,20 @@ import time
 
 load_dotenv()
 
-thread_count = int(getenv('THREADS'))
+targets = getenv('TARGETS').split(",")
+tmp_targets = []
+for target in targets:
+    if (requests.get(target, verify=False).status_code == 200):
+        tmp_targets.append(target)
+print(tmp_targets)
+targets = tmp_targets
 
 while True:
     threads = []
-    for x in range(thread_count):
-        threads.append(Sender(x))
-
+    x = 0
+    for target in targets:
+        threads.append(Sender(target, x))
+        x = x + 1
+        
     for thread in threads:
         thread.start()
