@@ -1,37 +1,54 @@
+from sender import Sender
+from dotenv import load_dotenv
+from os import getenv
+import numpy as np
 import requests
 import time
 import json
+import time
 
+load_dotenv()
 
-fake_data_url = "https://my.api.mockaroo.com/window"
-target_firebase = "https://ping-newdatabase-default-rtdb.firebaseio.com/Userinfo.json"
+thread_count = int(getenv('THREADS'))
+
+fake_data_url = getenv('FAKE_DATA_URL')
 
 head = {
-    "X-API-Key": "81300f30"
+    "X-API-Key": getenv('API_KEY')
 }
 
-fake_data = requests.get(fake_data_url, headers=head, verify=False).text
-fake_data = json.loads(fake_data)
+while True:
+    test = requests.get(getenv('target'), verify=False).text
+    if (test != "null"):
+        fake_data = requests.get(fake_data_url, headers=head, verify=False).text
+        fake_data = json.loads(fake_data)
 
-print(len(fake_data))
+        thread_limit = round(len(fake_data)/thread_count)
 
-for item in fake_data:
-    myobj = {
-                "as": item["as"],
-                "city": item["city"],
-                "country": item["country"],
-                "countryCode": item["country_code"],
-                "isp": item["isp"],
-                "lat": item["lat"],
-                "lon": item["long"],
-                "org": item["org"],
-                "query": item["query"],
-                "region": item["region"],
-                "regionName": item["regionname"],
-                "status": "success",
-                "timezone": item["timezone"],
-                "zip": item["zip"]
-    }
+        limits = []
+        while True:
+            if (len(limits) == 0):
+                limits.append(thread_limit)
+            else:
+                limits.append(thread_limit + limits[len(limits)-1])
+                if (limits[len(limits)-1] > len(fake_data)):
+                    limits.pop(len(limits)-1) 
+                    limits.append(len(fake_data))
+                    break
 
-    x = requests.post(target_firebase, data = json.dumps(myobj))
-    print(x.text)
+        threads = []
+
+        x = 0
+        y = 0
+        for limit in limits:
+            threads.append(Sender(fake_data[x:limit], y))
+            print("{}:{}".format(x, limit))
+            x = limit
+            y = y + 1
+
+        for thread in threads:
+            thread.start()
+
+        time.sleep(60)
+
+    time.sleep(10)
