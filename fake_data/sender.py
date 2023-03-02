@@ -9,12 +9,13 @@ load_dotenv()
 
 target_firebase = getenv('TARGET')
 
+
 class Sender(Thread):
     def __init__(self, data, id):
         super(Sender, self).__init__()
         self.data = data
         self.id = id
-        
+
     def run(self):
         data = self.data
 
@@ -37,8 +38,7 @@ class Sender(Thread):
             }
 
             try:
-                response = requests.post(target_firebase, data = json.dumps(mock_data)).text
+                response = requests.post(target_firebase, data=json.dumps(mock_data)).text
                 print("[{}] {}".format(self.id, response))
-            except:
+            except Exception as e:
                 sleep(10)
-

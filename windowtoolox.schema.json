@@ -1,0 +1,95 @@
+{
+  "id": 500409,
+  "num_rows": 200,
+  "file_format": "json",
+  "name": "windowtoolbox",
+  "array": true,
+  "columns": [
+    {
+      "name": "as",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 4294967295,
+      "decimals": 0,
+      "formula": null
+    },
+    {
+      "name": "city",
+      "null_percentage": 0,
+      "type": "City",
+      "formula": null
+    },
+    {
+      "name": "country",
+      "null_percentage": 0,
+      "type": "Country",
+      "countries": [
+
+      ],
+      "formula": null
+    },
+    {
+      "name": "country_code",
+      "null_percentage": 0,
+      "type": "Country Code",
+      "formula": null
+    },
+    {
+      "name": "isp",
+      "null_percentage": 0,
+      "type": "Fake Company Name",
+      "formula": null
+    },
+    {
+      "name": "lat",
+      "null_percentage": 0,
+      "type": "Latitude",
+      "formula": null
+    },
+    {
+      "name": "long",
+      "null_percentage": 0,
+      "type": "Longitude",
+      "formula": null
+    },
+    {
+      "name": "org",
+      "null_percentage": 0,
+      "type": "Fake Company Name",
+      "formula": null
+    },
+    {
+      "name": "query",
+      "null_percentage": 0,
+      "type": "IP Address v4",
+      "formula": null
+    },
+    {
+      "name": "region",
+      "null_percentage": 0,
+      "type": "State (abbrev)",
+      "onlyUSPlaces": false,
+      "formula": null
+    },
+    {
+      "name": "regionname",
+      "null_percentage": 0,
+      "type": "State",
+      "onlyUSPlaces": false,
+      "formula": null
+    },
+    {
+      "name": "timezone",
+      "null_percentage": 0,
+      "type": "Time Zone",
+      "formula": null
+    },
+    {
+      "name": "zip",
+      "null_percentage": 0,
+      "type": "Postal Code",
+      "formula": null
+    }
+  ]
+}
